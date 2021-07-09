@@ -17,7 +17,7 @@ const AllStudentsView = (props) => {
   return (
     <div>
       {students.map((student) => {
-        let name = student.firstname + " " + student.lastname;
+        let name = student.firstName + " " + student.lastName;
         return (
           <div key={student.id}>
           <Link to={`/student/${student.id}`}>
