@@ -10,9 +10,10 @@ class NewStudentContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-          firstname: "", 
-          lastname: "", 
-          campusId: null, 
+          firstName: "", 
+          lastName: "", 
+          campusId: null,
+          email: "",
           redirect: false, 
           redirectId: null
         };
@@ -28,16 +29,17 @@ class NewStudentContainer extends Component {
         event.preventDefault();
 
         let student = {
-            firstname: this.state.firstname,
-            lastname: this.state.lastname,
-            campusId: this.state.campusId
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            campusId: this.state.campusId,
+            email: this.state.email
         };
         
         let newStudent = await this.props.addStudent(student);
 
         this.setState({
-          firstname: "", 
-          lastname: "", 
+          firstName: "", 
+          lastName: "", 
           campusId: null, 
           redirect: true, 
           redirectId: newStudent.id

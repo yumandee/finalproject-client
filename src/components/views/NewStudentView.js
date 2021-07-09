@@ -45,17 +45,23 @@ const NewStudentView = (props) => {
         </div>
         <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
           <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
-          <input type="text" name="firstname" onChange ={(e) => handleChange(e)} />
+          <input type="text" name="firstName" onChange ={(e) => handleChange(e)} />
           <br/>
           <br/>
 
           <label style={{color:'#11153e', fontWeight: 'bold'}}>Last Name: </label>
-          <input type="text" name="lastname" onChange={(e) => handleChange(e)} />
+          <input type="text" name="lastName" onChange={(e) => handleChange(e)} />
           <br/>
           <br/>
 
+          {/* Change to dropdown menu instead! */}
           <label style={{color:'#11153e', fontWeight: 'bold'}}>campusId: </label>
           <input type="text" name="campusId" onChange={(e) => handleChange(e)} />
+          <br/>
+          <br/> 
+
+          <label style={{color:'#11153e', fontWeight: 'bold'}}> Email: </label>
+          <input type="text" name="email" onChange={(e) => handleChange(e)} />
           <br/>
           <br/>
 
