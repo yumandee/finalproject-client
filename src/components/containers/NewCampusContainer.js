@@ -3,10 +3,17 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import NewCampusView from '../views/NewCampusView';
-import { addCampusThunk } from '../../store/thunks';
+import { 
+  addCampusThunk,
+  fetchAllCampusesThunk
+} from '../../store/thunks';
 
 
 class NewCampusContainer extends Component {
+    componentDidMount() {
+      this.props.fetchAllCampuses();
+    }
+
     constructor(props){
         super(props);
         this.state = {
@@ -29,11 +36,13 @@ class NewCampusContainer extends Component {
 
         let campus = {
             name: this.state.name,
-            campusId: this.state.campusId,
+            campusId: this.props.allCampuses.length + 1,
             address: this.state.address
         };
         
+        console.log(campus)
         let newCampus = await this.props.addCampus(campus);
+        console.log(newCampus)
 
         this.setState({
           name: "", 
@@ -43,7 +52,7 @@ class NewCampusContainer extends Component {
           redirectId: newCampus.id
         });
     }
-
+    
     componentWillUnmount() {
         this.setState({redirect: false, redirectId: null});
     }
@@ -61,10 +70,17 @@ class NewCampusContainer extends Component {
     }
 }
 
-const mapDispatch = (dispatch) => {
-    return({
-        addCampus: (student) => dispatch(addCampusThunk(student)),
-    })
+const mapState = (state) => {
+  return {
+    allCampuses: state.allCampuses
+  };
 }
 
-export default connect(null, mapDispatch)(NewCampusContainer);
+const mapDispatch = (dispatch) => {
+    return({
+      fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()),
+      addCampus: (campus) => dispatch(addCampusThunk(campus)),
+    });
+}
+
+export default connect(mapState, mapDispatch)(NewCampusContainer);

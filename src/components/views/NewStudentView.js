@@ -32,7 +32,7 @@ const useStyles = makeStyles( () => ({
 }));
 
 const NewStudentView = (props) => {
-  const {handleChange, handleSubmit } = props;
+  const {handleChange, handleSubmit} = props;
   const classes = useStyles();
 
   return (
@@ -55,7 +55,7 @@ const NewStudentView = (props) => {
           <br/>
 
           {/* Change to dropdown menu instead! */}
-          <label style={{color:'#11153e', fontWeight: 'bold'}}>campusId: </label>
+          <label style={{color:'#11153e', fontWeight: 'bold'}}> Campus ID: </label>
           <input type="text" name="campusId" onChange={(e) => handleChange(e)} />
           <br/>
           <br/> 
