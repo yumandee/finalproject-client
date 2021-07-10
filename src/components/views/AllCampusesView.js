@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const AllCampusesView = (props) => {
-  // const {campuses, deleteCampus} = props;
+  const {allCampuses, deleteCampus} = props;
 
-  if (!props.allCampuses.length) {
+  if (!allCampuses.length) {
     return (
       <div>
         <p>There are no campuses.</p>
@@ -19,15 +19,18 @@ const AllCampusesView = (props) => {
 
   return (
     <div>
-      {props.allCampuses.map((campus) => (
-        <div key={campus.id}>
-          <Link to={`/campus/${campus.id}`}>
-            <h1>{campus.name}</h1>
-          </Link>
-          <p>{campus.description}</p>
-          {/* <button onClick = {() => deleteCampus(campus.id)}> X </button> */}
-        </div>
-      ))}
+      {allCampuses.map((campus) => {
+        return (
+          <div key={campus.id}>
+            <Link to={`/campus/${campus.id}`}>
+              <h1>{campus.name}</h1>
+            </Link>
+            <p>{campus.description}</p>
+            <button onClick = {() => deleteCampus(campus.id)}> X </button>
+          </div>
+        );
+      }
+      )}
       <Link to = {`/newcampus`}>
         <button> Add New Campus </button>
       </Link>
