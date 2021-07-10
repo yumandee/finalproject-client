@@ -35,6 +35,7 @@ class NewStudentContainer extends Component {
             email: this.state.email
         };
         
+
         let newStudent = await this.props.addStudent(student);
 
         this.setState({
@@ -57,7 +58,7 @@ class NewStudentContainer extends Component {
         return (
           <NewStudentView 
             handleChange = {this.handleChange} 
-            handleSubmit={this.handleSubmit}      
+            handleSubmit = {this.handleSubmit}      
           />
         );
     }
