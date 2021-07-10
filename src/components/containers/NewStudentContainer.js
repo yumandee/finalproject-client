@@ -3,10 +3,17 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import NewStudentView from '../views/NewStudentView';
-import { addStudentThunk } from '../../store/thunks';
+import { 
+  addStudentThunk,
+  fetchAllCampusesThunk
+} from '../../store/thunks';
 
 
 class NewStudentContainer extends Component {
+    componentDidMount() {
+      this.props.fetchAllCampuses();
+    }
+    
     constructor(props){
         super(props);
         this.state = {
@@ -55,19 +62,27 @@ class NewStudentContainer extends Component {
         if(this.state.redirect) {
           return (<Redirect to={`/student/${this.state.redirectId}`}/>)
         }
+        console.log(this.props.allCampuses)
         return (
           <NewStudentView 
             handleChange = {this.handleChange} 
-            handleSubmit = {this.handleSubmit}      
+            handleSubmit = {this.handleSubmit}
+            allCampuses = {this.props.allCampuses}      
           />
         );
     }
 }
+const mapState = (state) => {
+  return {
+    allCampuses: state.allCampuses
+  };
+}
 
 const mapDispatch = (dispatch) => {
     return({
-        addStudent: (student) => dispatch(addStudentThunk(student)),
+      fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()),
+      addStudent: (student) => dispatch(addStudentThunk(student)),
     })
 }
 
-export default connect(null, mapDispatch)(NewStudentContainer);
+export default connect(mapState, mapDispatch)(NewStudentContainer);

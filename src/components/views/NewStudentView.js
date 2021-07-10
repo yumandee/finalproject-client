@@ -31,10 +31,20 @@ const useStyles = makeStyles( () => ({
   
 }));
 
-const NewStudentView = (props) => {
-  const {handleChange, handleSubmit} = props;
-  const classes = useStyles();
+const idSelection = (campuses) => {
+  let menu = campuses.map( (campus) => {
+    return (
+      <option key = {campus.id} value = {campus.id}>
+        {campus.name}
+      </option>
+    );
+  })
+  return menu;
+}
 
+const NewStudentView = (props) => {
+  const {handleChange, handleSubmit, allCampuses} = props;
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <div className={classes.formContainer}>
@@ -55,8 +65,11 @@ const NewStudentView = (props) => {
           <br/>
 
           {/* Change to dropdown menu instead! */}
-          <label style={{color:'#11153e', fontWeight: 'bold'}}> Campus ID: </label>
-          <input type="text" name="campusId" onChange={(e) => handleChange(e)} />
+          <label style={{color:'#11153e', fontWeight: 'bold'}}> Campus: </label>
+          <select name = "campusId" onChange = {(e) => handleChange(e)}>
+            {idSelection(allCampuses)}
+          </select>
+          {/* <input type="text" name="campusId" onChange={(e) => handleChange(e)} /> */}
           <br/>
           <br/> 
 
