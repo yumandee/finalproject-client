@@ -1,3 +1,6 @@
-# Starter code for CRUD App
+# Final Project: CRUD App
 
 ## Client 
+
+## Project Members:
+- Mandy Yu (yumandee)
