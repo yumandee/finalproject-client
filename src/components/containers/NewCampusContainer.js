@@ -40,9 +40,7 @@ class NewCampusContainer extends Component {
             address: this.state.address
         };
         
-        console.log(campus)
         let newCampus = await this.props.addCampus(campus);
-        console.log(newCampus)
 
         this.setState({
           name: "", 
