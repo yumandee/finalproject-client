@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 
 const CampusView = (props) => {
   const {campus} = props;
+  // console.log(campus)
   return (
     <div>      
       <h1>{campus.name}</h1>
@@ -27,7 +28,11 @@ const CampusView = (props) => {
         );
       })}
       </ul>
+      <Link to={`/editcampus/${campus.id}`}>
+        <button> Edit </button>
+      </Link>
     </div>
+
   );
 
 };
