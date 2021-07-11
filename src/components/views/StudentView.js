@@ -10,7 +10,6 @@ const StudentView = (props) => {
       <h3>{student.email} </h3>
       <h3>{student.gpa} </h3>
       <h3>{student.imageUrl} </h3>
-
     </div>
   );
 
