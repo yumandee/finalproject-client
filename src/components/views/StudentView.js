@@ -10,6 +10,9 @@ const StudentView = (props) => {
       <h3>{student.email} </h3>
       <h3>{student.gpa} </h3>
       <h3>{student.imageUrl} </h3>
+      <Link to = {`/editstudent/${student.id}`}>
+        <button> Edit </button>
+      </Link>
     </div>
   );
 
