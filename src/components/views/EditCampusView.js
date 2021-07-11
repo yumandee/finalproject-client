@@ -31,6 +31,10 @@ const useStyles = makeStyles( () => ({
   
 }));
 
+const descPlaceholder = (campus) => {
+   return campus.name + " is a college/university.";
+}
+
 const EditCampusView = (props) => {
    const {handleChange, handleSubmit, campus} = props;
    const classes = useStyles();
@@ -53,6 +57,14 @@ const EditCampusView = (props) => {
                <input type="text" name="address" placeholder = {campus.address} onChange={(e) => handleChange(e)} />
                <br/>
                <br/>
+
+               <label style={{color:'#11153e', fontWeight: 'bold'}}> Description: </label>
+               <textarea name="description" placeholder = {descPlaceholder(campus)} rows = "4" cols = "25" onChange = { (e) => handleChange(e)} >
+
+               </textarea>
+               <br />
+               <br />
+               
                
                <Button variant="contained" color="primary" type="submit">
                   Submit

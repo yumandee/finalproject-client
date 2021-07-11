@@ -22,6 +22,7 @@ class EditCampusContainer extends Component {
          name: campus.name,
          campusId: campus.id,
          address: campus.address,
+         description: campus.description,
          redirect: false,
       }
    }
@@ -38,6 +39,7 @@ class EditCampusContainer extends Component {
       let campus = this.state.campus
       campus.name = this.state.name
       campus.address = this.state.address
+      campus.description = this.state.description
 
       // console.log(campus)
       await this.props.editCampus(campus);
