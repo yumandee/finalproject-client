@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { 
   fetchAllCampusesThunk, 
   deleteCampusThunk,
+  deleteStudentThunk
   // addCampusThunk,
   // editCampusThunk
 } from "../../store/thunks";
@@ -21,6 +22,7 @@ class AllCampusesContainer extends Component {
       <AllCampusesView
         allCampuses={this.props.allCampuses}
         deleteCampus={this.props.deleteCampus}
+        deleteStudent={this.props.deleteStudent}
         // addCampus={this.props.addCampus}
         // editCampus={this.props.editCampus}
       />
@@ -41,6 +43,7 @@ const mapDispatch = (dispatch) => {
   return {
     fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()),
     deleteCampus: (campusId) => dispatch(deleteCampusThunk(campusId)),
+    deleteStudent: (id) => dispatch(deleteStudentThunk(id))
     // addCampus: (campus) => dispatch(addCampusThunk(campus)),
     // editCampus: (campus) => dispatch(editCampusThunk(campus))
   };
