@@ -42,6 +42,22 @@ const idSelection = (campuses) => {
   return menu;
 }
 
+const button = (campuses) => {
+  if (!campuses.length) {
+    return (
+      <div> 
+        <Button variant = "contained" color = "primary" type = "submit" disabled> Submit </Button>
+  
+        <h3> There are no campuses in the database. </h3>
+      </div>
+    );
+    
+
+  }
+  return <Button variant = "contained" color = "primary" type = "submit" > Submit </Button>
+  
+}
+
 const NewStudentView = (props) => {
   const {handleChange, handleSubmit, allCampuses} = props;
   const classes = useStyles();
@@ -55,18 +71,18 @@ const NewStudentView = (props) => {
         </div>
         <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
           <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
-          <input type="text" name="firstName" onChange ={(e) => handleChange(e)} />
+          <input type="text" name="firstName" required onChange ={(e) => handleChange(e)} />
           <br/>
           <br/>
 
           <label style={{color:'#11153e', fontWeight: 'bold'}}>Last Name: </label>
-          <input type="text" name="lastName" onChange={(e) => handleChange(e)} />
+          <input type="text" name="lastName" required onChange={(e) => handleChange(e)} />
           <br/>
           <br/>
 
           {/* Change to dropdown menu instead! */}
           <label style={{color:'#11153e', fontWeight: 'bold'}}> Campus: </label>
-          <select name = "campusId" onChange = {(e) => handleChange(e)}>
+          <select name = "campusId"  onChange = {(e) => handleChange(e)}>
             {idSelection(allCampuses)}
           </select>
           {/* <input type="text" name="campusId" onChange={(e) => handleChange(e)} /> */}
@@ -74,13 +90,11 @@ const NewStudentView = (props) => {
           <br/> 
 
           <label style={{color:'#11153e', fontWeight: 'bold'}}> Email: </label>
-          <input type="text" name="email" onChange={(e) => handleChange(e)} />
+          <input type="email" name="email" required onChange={(e) => handleChange(e)} />
           <br/>
           <br/>
 
-          <Button variant="contained" color="primary" type="submit">
-            Submit
-          </Button>
+          {button(allCampuses)}
           <br/>
           <br/>
         </form>
