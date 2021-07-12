@@ -1,8 +1,15 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+const handleDeleteCampus = (campus, deleteCampus, deleteStudent) => {
+  campus.students.map( (student) => {
+    deleteStudent(student.id)
+  })
+  deleteCampus(campus.id) 
+}
+
 const AllCampusesView = (props) => {
-  const {allCampuses, deleteCampus} = props;
+  const {allCampuses, deleteCampus, deleteStudent} = props;
 
   if (!allCampuses.length) {
     return (
@@ -26,7 +33,10 @@ const AllCampusesView = (props) => {
               <h1>{campus.name}</h1>
             </Link>
             <p>{campus.description}</p>
-            <button onClick = {() => deleteCampus(campus.id)}> X </button>
+            {/* <button onClick = {() => deleteCampus(campus.id)}> X </button> */}
+            {console.log(campus)}
+            <button onClick = {() => handleDeleteCampus(campus, deleteCampus, deleteStudent)}> X </button>
+            <h3> Deleting a Campus will also delete associated students! </h3>
           </div>
         );
       }
