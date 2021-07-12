@@ -56,7 +56,7 @@ const studentsList = (campus, deleteStudent) => {
                   </Link>
                   <span> </span>
                   <button onClick = {() => {
-                     handleDeleteStudent(campus, student.id, deleteStudent)
+                     handleDeleteStudent(student.id, deleteStudent)
                   }}> Delete </button>
                </p>
             </li>
@@ -67,7 +67,7 @@ const studentsList = (campus, deleteStudent) => {
    );
 }
 
-const handleDeleteStudent = (campus, id, deleteStudent) => {
+const handleDeleteStudent = (id, deleteStudent) => {
    deleteStudent(id)
    let li = document.getElementById("student"+id)
    li.parentElement.removeChild(li)
@@ -120,7 +120,17 @@ const EditCampusView = (props) => {
             {studentsList(campus, deleteStudent)}
             <br />
 
+            <div style={{textAlign: 'center'}}> 
+               <Link to = "/newstudent"> <button> Add New Student </button> </Link>
+            </div>
+            <br />
          </div>
+
+         <br />
+         <br />
+         <Link to="/"> <button> Home </button> </Link>
+         <Link to="/campuses"> <button>All Campuses </button> </Link>
+         <Link to="/students"> <button> All Students </button></Link>
       </div>
    );
 }

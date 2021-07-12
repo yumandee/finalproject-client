@@ -5,23 +5,25 @@ import { Redirect } from 'react-router-dom';
 import EditStudentView from '../views/EditStudentView';
 import {
    fetchStudentThunk,
-   editStudentThunk
+   editStudentThunk,
+   fetchAllCampusesThunk
 } from '../../store/thunks';
 
 class EditStudentContainer extends Component {
    componentDidMount() {
       this.props.fetchStudent(this.props.match.params.id);
+      this.props.fetchAllCampuses();
    }
 
    constructor(props) {
       super(props);
       let student = this.props.student
-      // console.log(campus)
       this.state = {
          student: student,
          firstName: student.firstName,
          lastName: student.lastName,
          id: student.id,
+         campusId: student.campusId,
          email: student.email,
          gpa: student.gpa,
          redirect: false
@@ -42,6 +44,7 @@ class EditStudentContainer extends Component {
       student.lastName = this.state.lastName
       student.email = this.state.email
       student.gpa = this.state.gpa
+      student.campusId = this.state.campusId
 
       // console.log(campus)
       await this.props.editStudent(student);
@@ -64,7 +67,8 @@ class EditStudentContainer extends Component {
          <EditStudentView 
             handleChange = {this.handleChange}
             handleSubmit = {this.handleSubmit}
-            student = {this.props.student}
+            allCampuses = {this.props.allCampuses}
+            student = {this.state.student}
          />
       )
    }
@@ -74,13 +78,15 @@ class EditStudentContainer extends Component {
 const mapState = (state) => {
    return {
       student: state.student,
+      allCampuses: state.allCampuses
    };
 };
 
 const mapDispatch = (dispatch) => {
    return ({
       fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
-      editStudent: (campus) => dispatch(editStudentThunk(campus))
+      editStudent: (campus) => dispatch(editStudentThunk(campus)),
+      fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()),
    });
 };
 

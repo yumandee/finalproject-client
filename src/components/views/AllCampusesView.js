@@ -16,6 +16,11 @@ const AllCampusesView = (props) => {
         <Link to = {`/newcampus`}>
           <button> Add New Campus</button>
         </Link>
+
+        <br />
+        <br />
+        <Link to="/"> <button> Home </button> </Link>
+        <Link to="/students"> <button> All Students </button></Link>
       </div>
 
     );
@@ -43,6 +48,11 @@ const AllCampusesView = (props) => {
       <Link to = {`/newcampus`}>
         <button> Add New Campus </button>
       </Link>
+
+      <br />
+      <br />
+      <Link to="/"> <button> Home </button> </Link>
+      <Link to="/students"> <button> All Students </button></Link>
     </div>
   );
 };

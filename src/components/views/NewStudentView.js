@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 
 
 import { makeStyles } from '@material-ui/core/styles';
-
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles( () => ({
   formContainer:{  
@@ -80,12 +80,10 @@ const NewStudentView = (props) => {
           <br/>
           <br/>
 
-          {/* Change to dropdown menu instead! */}
           <label style={{color:'#11153e', fontWeight: 'bold'}}> Campus: </label>
           <select name = "campusId"  onChange = {(e) => handleChange(e)}>
             {idSelection(allCampuses)}
           </select>
-          {/* <input type="text" name="campusId" onChange={(e) => handleChange(e)} /> */}
           <br/>
           <br/> 
 
@@ -93,12 +91,23 @@ const NewStudentView = (props) => {
           <input type="email" name="email" required onChange={(e) => handleChange(e)} />
           <br/>
           <br/>
+               
+          <label style = {{color: '#11153e', fontWeight: 'bold'}}> GPA: </label>
+          <input type = 'number' min = "0.0" max = "4.0" step = "0.1" name = 'gpa' onChange = { (e) => handleChange(e)} />
+          <br />
+          <br />
 
           {button(allCampuses)}
           <br/>
           <br/>
         </form>
         </div>
+        
+        <br />
+        <br />
+        <Link to="/"> <button> Home </button> </Link>
+        <Link to="/campuses"> <button>All Campuses </button> </Link>
+        <Link to="/students"> <button> All Students </button></Link>
       </div>
     
   )

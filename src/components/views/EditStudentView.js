@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-
+import { Link } from "react-router-dom"
 const useStyles = makeStyles( () => ({
   formContainer:{  
     width: '500px',
@@ -31,8 +31,19 @@ const useStyles = makeStyles( () => ({
   
 }));
 
+const idSelection = (campuses) => {
+  let menu = campuses.map( (campus) => {
+    return (
+      <option key = {campus.id} value = {campus.id}>
+        {campus.name}
+      </option>
+    );
+  })
+  return menu;
+}
+
 const EditStudentView = (props) => {
-   const {handleChange, handleSubmit, student} = props;
+   const {handleChange, handleSubmit, allCampuses, student} = props;
    const classes = useStyles();
 
    return (
@@ -53,6 +64,13 @@ const EditStudentView = (props) => {
                <input type = 'text' name = 'name' placeholder = {student.lastName} onChange = { (e) => handleChange(e)} />
                <br />
                <br />
+                        
+               <label style={{color:'#11153e', fontWeight: 'bold'}}> Campus: </label>
+               <select name = "campusId"  onChange = {(e) => handleChange(e)}>
+                  {idSelection(allCampuses)}
+               </select>
+               <br/>
+               <br/> 
 
                <label style={{color:'#11153e', fontWeight: 'bold'}}> Email: </label>
                <input type="text" name="address" placeholder = {student.email} onChange={(e) => handleChange(e)} />
@@ -71,6 +89,12 @@ const EditStudentView = (props) => {
                <br /> 
             </form>
          </div>
+
+         <br />
+         <br />
+         <Link to="/"> <button> Home </button> </Link>
+         <Link to="/campuses"> <button>All Campuses </button> </Link>
+         <Link to="/students"> <button> All Students </button></Link>
       </div>
    );
 }
