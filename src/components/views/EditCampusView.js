@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
 
+import { Link } from "react-router-dom"
 
 const useStyles = makeStyles( () => ({
   formContainer:{  
@@ -35,8 +36,45 @@ const descPlaceholder = (campus) => {
    return campus.name + " is a college/university.";
 }
 
+const studentsList = (campus, deleteStudent) => {
+   if (!campus.students.length) {
+      return <h4 style = {{textAlign: 'center'}}> No Associated Students </h4>
+
+   }
+
+   return (
+      <ul> 
+
+      {campus.students.map( student => {
+         let name = student.firstName + " " + student.lastName;
+         return (
+            <li id = {"student" + student.id} key = {student.id}>
+               <p> 
+                  {name}{"\t"}     
+                  <Link to={`/editstudent/${student.id}`}>
+                     <button> Edit </button>
+                  </Link>
+                  <span> </span>
+                  <button onClick = {() => {
+                     handleDeleteStudent(campus, student.id, deleteStudent)
+                  }}> Delete </button>
+               </p>
+            </li>
+         );
+      })}
+      </ul>
+
+   );
+}
+
+const handleDeleteStudent = (campus, id, deleteStudent) => {
+   deleteStudent(id)
+   let li = document.getElementById("student"+id)
+   li.parentElement.removeChild(li)
+}
+
 const EditCampusView = (props) => {
-   const {handleChange, handleSubmit, campus} = props;
+   const {handleChange, handleSubmit, campus, deleteStudent} = props;
    const classes = useStyles();
 
    return (
@@ -72,6 +110,16 @@ const EditCampusView = (props) => {
                <br />
                <br /> 
             </form>
+
+            <div className = {classes.formTitle}>
+               <Typography style = {{fontWeight: 'bold', fontFamily: 'Courier, sans-serif', fontSize: '20px', color: '#11153e' }}>
+                  Edit Students
+               </Typography>
+            </div>
+
+            {studentsList(campus, deleteStudent)}
+            <br />
+
          </div>
       </div>
    );

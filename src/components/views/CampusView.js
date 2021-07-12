@@ -24,12 +24,15 @@ const CampusView = (props) => {
             <p> {email} </p>
             <p> {image} </p>
             <p> {gpa} </p>
-          </li>
+
+           </li>
+          
+
         );
       })}
       </ul>
       <Link to={`/editcampus/${campus.id}`}>
-        <button> Edit </button>
+        <button> Edit {campus.name} </button>
       </Link>
     </div>
 

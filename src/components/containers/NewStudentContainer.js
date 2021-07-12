@@ -15,15 +15,16 @@ class NewStudentContainer extends Component {
     }
     
     constructor(props){
-        super(props);
-        this.state = {
-          firstName: "", 
-          lastName: "", 
-          campusId: null,
-          email: "",
-          redirect: false, 
-          redirectId: null
-        };
+      
+      super(props);
+      this.state = {
+        firstName: "", 
+        lastName: "", 
+        campusId: null,
+        email: "",
+        redirect: false, 
+        redirectId: null
+      };
     }
 
     handleChange = event => {
@@ -35,10 +36,18 @@ class NewStudentContainer extends Component {
     handleSubmit = async event => {
         event.preventDefault();
 
+        if (this.state.campusId == null) { 
+          var def_id = this.props.allCampuses[0].id 
+        }
+        else {
+          def_id = this.state.campusId
+        }
+
+        console.log(def_id)
         let student = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
-            campusId: this.state.campusId,
+            campusId: def_id,
             email: this.state.email
         };
         
@@ -62,7 +71,7 @@ class NewStudentContainer extends Component {
         if(this.state.redirect) {
           return (<Redirect to={`/student/${this.state.redirectId}`}/>)
         }
-        console.log(this.props.allCampuses)
+        // console.log(this.props.allCampuses)
         return (
           <NewStudentView 
             handleChange = {this.handleChange} 

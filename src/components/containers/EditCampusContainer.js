@@ -5,7 +5,8 @@ import { Redirect } from 'react-router-dom';
 import EditCampusView from '../views/EditCampusView';
 import {
    fetchCampusThunk,
-   editCampusThunk
+   editCampusThunk,
+   deleteStudentThunk
 } from '../../store/thunks';
 
 class EditCampusContainer extends Component {
@@ -16,7 +17,6 @@ class EditCampusContainer extends Component {
    constructor(props) {
       super(props);
       let campus = this.props.campus
-      // console.log(campus)
       this.state = {
          campus: campus,
          name: campus.name,
@@ -63,6 +63,7 @@ class EditCampusContainer extends Component {
             handleChange = {this.handleChange}
             handleSubmit = {this.handleSubmit}
             campus = {this.props.campus}
+            deleteStudent = {this.props.deleteStudent}
          />
       )
    }
@@ -78,7 +79,8 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
    return ({
       fetchCampus: (id) => dispatch(fetchCampusThunk(id)),
-      editCampus: (campus) => dispatch(editCampusThunk(campus))
+      editCampus: (campus) => dispatch(editCampusThunk(campus)),
+      deleteStudent: (id) => dispatch(deleteStudentThunk(id))
    });
 };
 
