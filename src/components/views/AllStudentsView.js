@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const AllStudentsView = (props) => {
   const {students, deleteStudent} = props;
-
+  console.log(students.length)
   if (!students.length) {
     return (
     <div>
@@ -10,6 +10,11 @@ const AllStudentsView = (props) => {
       <Link to={`/newstudent`}>
         <button> Add New Student </button>
       </Link>
+
+      <br />
+      <br />
+      <Link to="/"> <button> Home </button> </Link>
+      <Link to="/campuses"> <button> All Campuses </button></Link>
     </div>
     );
   }
@@ -32,6 +37,12 @@ const AllStudentsView = (props) => {
       <Link to={`/newstudent`}>
         <button> Add New Student </button>
       </Link>
+
+      <br />
+      <br />
+      <Link to="/"> <button> Home </button> </Link>
+      <Link to="/campuses"> <button>All Campuses </button> </Link>
+
     </div>
   );
 };
